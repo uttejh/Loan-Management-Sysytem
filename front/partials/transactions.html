@@ -1,0 +1,173 @@
+<div class="container profile">
+
+	<!-- <script type="text/ng-template" id="alert.html">
+		<div ng-transclude></div>
+	</script>
+	<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" ng-show="alertshow">
+		{{alert.msg}}
+	</div> -->
+
+	<div class="alert alert-success" ng-show="alertshow">
+		<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  	<strong>Thank You!</strong> Please Check your mail.
+	</div>
+
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Payment Methods</h4>
+	      </div>
+	      <div class="modal-body">
+	        <li class="list-group-item list-group-item-action list-group-item-default">
+				Pay through our representative&nbsp;
+				<button class="btn btn-primary btn-sm" ng-click="reqrep()">Request Representative</button>
+	        </li>
+	        <li class="list-group-item list-group-item-action list-group-item-default">
+				Pay through PAYTM&nbsp;
+				<button class="btn btn-primary btn-sm" ><a href="https://paytm.com/" style="color:white">Go To PAYTM</a></button>
+	        </li>
+	         <li class="list-group-item list-group-item-action list-group-item-default">
+				Pay through Bank Account&nbsp;
+				<button class="btn btn-primary btn-sm " ng-click="alert()">Request A/C Number</button>
+	        </li>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="">
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		&nbsp;Hi Username,
+		<button class="btn btn-info pull-right" ui-sref="post">
+			<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+			Post a product
+		</button>
+	</div>
+	<div>
+		<h3><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;Transaction Details:</h3>
+	</div>
+	<table class="table table-bordered" style="text-align:center">
+	    <thead class="thead-inverse" style="color:white;background:#101010;">
+	      <tr>
+	        <!-- <th style="text-align:center">#</th> -->
+	        <th style="text-align:center">
+	        	#&nbsp;CommodityID
+	        </th>
+	        <th style="text-align:center">
+	        	<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+	        	&nbsp;Commodity
+	        </th>
+	        <th style="text-align:center">
+	        	<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+	        	&nbsp;From - To Date
+	        </th>
+	        <th style="text-align:center">
+	        	<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+	        	&nbsp;Status
+	        </th>
+	        <th style="text-align:center">
+	        	<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+	        	&nbsp;Time left
+	        </th>
+	        <th style="text-align:center">
+	        	&#x20B9;
+	        	&nbsp;Amount
+	        </th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	     <!--  <tr>
+	        <th scope="row">1</th>
+	        <td>Mobile Phone</td>
+	        <td>23/4/16 to 23/5/16</td>
+	        <td class="bg-success">Completed</td>
+	        <td> - </td>
+	        <td>
+	        	-
+	        	
+	        </td>
+	      </tr> -->
+	     <tr ng-repeat="x in userdata.first">
+	     	<!-- <div ng-repeat="x in y.first"> -->
+	        <!-- <th scope="row"></th> -->
+	        <td scope="row">{{x.commodityid}} </td>
+	        <td>{{x.model}} ({{x.type}})</td>
+	        <td>{{x.data.from | date}} to {{x.data.to | date}}</td>
+	        <td ng-class="statuscolor(x.data.status)">{{x.data.status}}</td>
+	        <td><strong>{{getdiff(x.data.to,x.data.status)}}</strong></td>
+	        <td>
+	        	<div ng-show="{{iscomp(x.data.status)}}">
+	        		Rs. {{x.data.amount}}&nbsp;&nbsp;
+		        	<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >
+		        		<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+		        		&nbsp;Pay Now
+		        	</button>
+	        	</div>
+	        	<div ng-hide="{{iscomp(x.data.status)}}">
+	        		-
+	        	</div>	        	
+	        </td>
+	        <!-- </div> -->
+	      </tr>
+	      <!-- <tr>
+	        <th scope="row">3</th>
+	        <td>Mobile Phone</td>
+	        <td>23/4/16 to 23/5/16</td>
+	        <td class="bg-danger">overdue</td>
+	        <td>overdue by 3days</td>
+	        <td>
+	        	Rs. 2,22,222&nbsp;&nbsp;
+	        	<input type="button" class="btn btn-primary btn-sm" value="Pay Now" data-toggle="modal" data-target="#myModal">
+	        </td>
+	      </tr> -->
+	    </tbody>
+  	</table>
+  	<div ng-show="showempty" class="alert alert-warning">
+  		<h3><center>Looks like you have nothing here!</center></h3>
+  	</div>
+  	<!-- <ul class="pagination pagi">
+		<li ng-click="button_clicked || first()" ng-disabled="button_clicked" ng-class="myClass">
+			<a >First</a>
+		</li>
+		<li ng-click="button_clicked || decrement()" ng-disabled="button_clicked" ng-class="myClass">
+			<a >Previous</a>
+		</li>
+
+		<li ><a ng-class="{selected : activeMenu == 1}" ng-click="paginate(value)">{{ value }}</a></li>
+		<li><a ng-class="{selected : activeMenu == 2}" ng-click="paginate(value+1)" ng-disabled="disable(value+1)">{{value+1}}</a></li>
+		<li><a ng-class="{selected : activeMenu >= 3}" ng-click="paginate(value+2)">{{value+2}}</a></li>
+		<li><a ng-click="paginate(value+3)">{{value+3}}</a></li>
+		<li><a ng-click="paginate(value+4)">{{value+4}}</a></li>
+		<li ng-click="increment(value+1)" ng-disabled="">
+			<a >Next</a>
+		</li>
+		<li ng-click="last()" ng-disabled="">
+			<a >Last</a>
+		</li>
+	</ul> -->
+	<ul class="pagination pagi col-md-12">
+		<li ng-click="prev()">
+			<a><< Previous</a>
+		</li>
+		<li ng-click="next()" class="pull-right">
+			<a>Next >></a>
+		</li>
+	</ul>
+<!--   <div>
+  	<div class="list-group">
+	 	<div>
+	 		<li class="list-group-item list-group-item-action list-group-item-info" >Total Transactions: {{userdata.all}}</li>
+			<li class="list-group-item list-group-item-action list-group-item-success">Completed Transactions: {{userdata.comp}}</li>
+			<li class="list-group-item list-group-item-action list-group-item-warning">Running Transactions: {{userdata.run}}</li>
+			<li class="list-group-item list-group-item-action list-group-item-danger">Overdue Transactions: {{userdata.over}}</li>
+			<li class="list-group-item list-group-item-action list-group-item-danger">Pending Transactions: {{userdata.pend}}</li>
+	 	</div>
+	 	</div>
+  </div> -->
+</div>

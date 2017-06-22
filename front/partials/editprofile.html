@@ -1,0 +1,80 @@
+<div class="editpro" style="">
+	<div class="well well-lg container">
+		<div class="container">
+			<!-- <div class=""> -->
+				<h2>WELCOME {{details.username}}!</h2>
+			<!-- </div> -->
+			<!-- <div class=""> -->
+			<div class="alert alert-info col-md-10">To modify your details, please edit the details and press SAVE.</div>
+			<div class="alert alert-success col-md-10" ng-show="comp">{{myres}}</div>
+			<div class="col-md-2"></div>
+			<!-- </div> -->
+			<div class="col-md-10">
+				<div class="bg bg-danger">
+					<ul>
+						<li ng-repeat="x in errors" style="list-style-type: decimal;">
+							{{x}}
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-2">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					&nbsp;Username:
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="form-control" ng-model="details.username">
+				</div>
+			</div>
+			<div class="col-md-12 padd_edit">
+				<div class="col-md-2">
+					<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					&nbsp;Email ID:
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="form-control" ng-model="details.email">
+				</div>
+			</div>
+			<div class="col-md-12 padd_edit">
+				<div class="col-md-2">
+					<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+					&nbsp;Phone No.
+				</div>
+				<div class="col-md-4">
+					<input type="text" class="form-control" ng-model="details.phone">
+				</div>
+			</div>
+			<div class="col-md-12 padd_edit" ng-show="default1">
+				<div class="col-md-2">
+					<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+					&nbsp;Password
+				</div>
+				<div class="col-md-4">
+					<input type="password" class="form-control" ng-model="password">
+				</div>
+			</div>
+			<div class="col-md-12 padd_edit" ng-show="default1">
+				<div class="col-md-2">
+					<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+					&nbsp;Confirm Password
+				</div>
+				<div class="col-md-4">
+					<input type="password" class="form-control" ng-model="confirmpassword">
+				</div>
+			</div>
+			<div class="col-md-12 padd_edit">
+				&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-warning" ng-click="default1=!default1">
+					<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+					Change Password
+				</button>
+				&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-info" ng-click="save()">
+					<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+					SAVE
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

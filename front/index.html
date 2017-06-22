@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp" ng-controller="MainController">
+<head>
+	<meta charset="UTF-8">
+	<!-- <meta name="csrf-token" content="{{ csrf_token() }}" /> -->
+	<title>{{title}}</title>
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	
+
+	<!-- <script type="text/javascript" src="scripts/angular.js"></script> -->
+
+	<script type="text/javascript" src="node_modules\angular\angular.js"></script>
+	<script type="text/javascript" src="node_modules\angular-ui-bootstrap\dist\ui-bootstrap.js"></script>
+	<script type="text/javascript" src="node_modules\angular-ui-bootstrap\dist\ui-bootstrap-tpls.js"></script>
+	<!-- <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+ -->
+	
+
+
+
+
+	<script type="text/javascript" src="scripts/route.js"></script>
+	<script type="text/javascript" src="scripts/jquery.js"></script>
+	<script type="text/javascript" src="scripts/jquery_ui.js"></script>
+	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" scr="node_modules\angular-ui-bootstrap\src\carousel\carousel.js"></script>
+	<script type="text/javascript" src="bower_components\angular-cookies\angular-cookies.min.js"></script>
+
+
+	<!-- ******************************************************************************************* -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>   
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+
+	<!-- <script type="text/javascript" src="ng-file-upload-bower-12.2.9/ng-file-upload.min.js"></script> -->
+
+
+
+	<!-- <script type="text/javascript" src="scripts/ui-bootstrap.js"></script> -->
+	<!-- <script type="text/javascript" src="scripts/ui-bootstrap-custom-tpls-2.0.1.min.js"></script> -->
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script> -->
+  <!--   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script> -->
+	<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script> -->
+	<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js">
+	</script> -->
+
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<script type="text/javascript" src="scripts/maincontroller.js"></script>
+	<script type="text/javascript" src="scripts/homecontroller.js"></script>
+	<script type="text/javascript" src="scripts/carousel.js"></script>
+	<script type="text/javascript" src="scripts/logincontroller.js"></script>
+	<!-- <script type="text/javascript" src="scripts/registercontroller.js"></script> -->
+	<script type="text/javascript" src="scripts/pwdcheck.js"></script>
+	<script type="text/javascript" src="scripts/profilecontroller.js"></script>
+	<script type="text/javascript" src="scripts/modalcontroller.js"></script>
+	<script type="text/javascript" src="scripts/productcontroller.js"></script>
+	<script type="text/javascript" src="scripts/mailcontroller.js"></script>
+	<script type="text/javascript" src="scripts/AdminController.js"></script>
+	<script type="text/javascript" src="scripts/editprofilectrl.js"></script>
+	<script type="text/javascript" src="scripts/faqctrl.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top mynav">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		    	<span class="sr-only">Toggle navigation</span>
+		    	<span class="icon-bar"></span>
+		    	<span class="icon-bar"></span>
+		    	<span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="#">Brand</a>
+		</div>
+
+		<!-- Collect the nav links, forms, oand other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 	    <ul class="nav navbar-nav" style=" font-weight: bold;">
+		    <li ng-class="{active: isState('home')}"><a ui-sref="home">Home <span class="sr-only">(current)</span></a></li>
+			<li ng-class="{active: isState('interestrates')}"><a ui-sref="interestrates">Interest Rates</a></li>
+			<li ng-class="{active: isState('tags')}"><a ui-sref="tags">Rules</a></li>
+			<li ng-class="{active: isState('contactus')}"><a ui-sref="contactus">Contact us</a></li>
+			<li ng-class="{active: isState('faq')}"><a ui-sref="faq">FAQs</a></li>                                       
+		</ul>
+		<ul class="nav navbar-nav navbar-right login">
+
+		    <div ng-hide="isLoggedIn">
+		    	<button type="button" class="btn btn-success navbar-btn navbar-right" ui-sref="login_register">
+		           	<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+		           	&nbsp;Login / Register
+	           	</button>
+	           	
+			</div>
+			<div ng-show="isLoggedIn">
+		        <ul class="nav nav-pills userpro">
+				  <li role="presentation" class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				      <span class="glyphicon glyphicon-user"></span>
+				      {{userprofilename}} <span class="caret"></span>
+				    </a>
+				    <ul class="dropdown-menu">
+				     	<li><a ui-sref="transactions">My Transactions</a></li>
+			            <li><a ui-sref="post">Need Money</a></li>
+			            <li><a ui-sref="contactus">Send Feedback</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a ui-sref="editprofile">Edit Profile</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a ng-click="logout()" class="pointercursor">Logout</a></li>
+				    </ul>
+				  </li>
+				</ul>
+	        </div>
+		</ul>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div ui-view="main">
+	</div>
+	<div class="loader_wrap" ng-show="showloader"><div class="loading"><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div>
+	<!-- <div >
+		<span class="glyphicon glyphicon-load"></span>
+	</div> -->
+
+
+	<footer> 
+	     <div class="container text-center mycopyright" style="width:100%;"> 
+	        <p class="mycopytext" >&copy;&nbsp;Copyright 2016</p>
+	     </div> 
+    </footer>
+    
+</body>
+</html>

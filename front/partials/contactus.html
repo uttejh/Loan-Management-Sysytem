@@ -1,0 +1,72 @@
+<div >
+	<div class="col-md-12" style="padding:3px;text-align:center;">
+		<span class="bg bg-success col-md-12" >
+				<strong>{{ succ_msg }}</strong>
+		</span>
+		<span class="bg bg-danger col-md-12" >
+				<strong>{{ err_msg }}</strong>
+		</span>
+	</div>
+	<div class="col-md-8">
+		
+		<div class="contact well">
+			<h4 class="contact_in">CONTACT US</h4>
+			<div>
+				<form class="form-inline contact_form" role="form" name="myForm" ng-submit="send()">
+					<div class="form-group inner_contact_form">
+						<div class="col-lg-4 col-sm-4 lower_cont">
+							<input type="name" name="username" class="form-control main_form" id="name" required="required" placeholder="Your Name" ng-model="mail.user">
+						</div>
+						<div class="col-lg-4 col-sm-4 lower_cont">
+							<input type="email" class="form-control main_form" id="email" required="required" placeholder="Your Email" ng-model="mail.email">
+						</div>
+						<div class="col-lg-4 col-sm-4 lower_cont">
+							<input type="subject" class="form-control main_form" id="subject" required="required" placeholder="Subject" ng-model="mail.subject">
+						</div>
+					</div>
+					<div class="textarea_contact">
+						<textarea class="form-control textarea-box" name="mymessage" placeholder="Your Message or Query" required="required" ng-model="mail.body"></textarea>
+					</div>
+					<div class="mail_btn_div">
+
+						<button class="btn btn-success send_msg_button" type="submit">
+							<span class="glyphicon glyphicon-send" aria-hidden="true" ></span>
+							&nbsp;&nbsp;Send Message
+						</button>
+					</div>
+				</form>
+			</div>	
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="ouroffice">
+			<legend>
+				<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+				OUR OFFICE
+			</legend>
+			<div class="">
+				<strong>Company</strong>, Inc.<br>
+				34-433-33/A,<br>
+				Kukaypally,<br>
+				Hyderabad-500035.
+				<br><br>
+				<div>
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					&nbsp;Ashik
+				</div>
+				<div>
+					<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					&nbsp;Name@gmail.com
+				</div>
+				<div>
+					<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+					&nbsp;9999999999
+				</div>
+				<br>
+				<div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.250175027335!2d78.38923931440296!3d17.495567104282227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ecec502463%3A0xefbda3801eb483d1!2sJawaharlal+Nehru+Technological+University+Hyderabad!5e0!3m2!1sen!2sin!4v1471760546832" width="350" height="270" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

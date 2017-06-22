@@ -1,0 +1,240 @@
+<div class="dashboard">
+	<div class="container">
+		<!-- <div class="alert alert-success" ng-show="alertshow">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  	<strong>Thank You!</strong> Please Check your mail.
+		</div> -->
+		<script type="text/ng-template" id="modal.html">
+		  <div class="modal-header">
+		    <h3 class="modal-title" id="modal-title">EDIT <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h3>
+		    <p class="bg-success" ng-show="succmsg" style="padding:3px;text-align:center">{{msg}}</p>
+		    <p class="bg bg-danger" style="padding:3px;text-align:center">All the Four Fields will be updated!</p>
+		  </div>
+		  <div class="modal-body modbody" id="modal-body">
+		  	<div >
+		  		<div class="col-md-12">
+		  			<div class="col-md-4"><strong>User ID:</strong> {{editable.userid}} </div>
+		  			<div class="col-md-8"><strong>User Name:</strong> {{editable.user.username}} </div>
+		  		</div>
+		  		<div class="col-md-12">
+		  			<div class="col-md-4"><strong>Item ID:</strong> {{editable.commodityid}} </div>
+		  			<div class="col-md-4"><strong>Type:</strong> {{editable.type}} </div>
+		  			<div class="col-md-4"><strong>Model:</strong> {{editable.model}} </div>
+		  		</div>
+		  		<form ng-submit="vm.update()">
+		  			<div class="col-md-6">
+			  			<label for="">FROM:</label>
+			  			<div>
+					        <p class="input-group">
+					          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+					    </div>
+
+			  		</div>
+			  		<div class="col-md-6">
+			  		    <label for="">TO:</label>
+			  			<div>
+					        <p class="input-group">
+					          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+					          <span class="input-group-btn">
+					            <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          </span>
+					        </p>
+					    </div>
+
+			  		</div>
+			  		<div class="col-md-6">
+			  			<select class="form-control" ng-model="details.status" required="required">
+						  	<!-- <option selected disabled>CHOOSE STATUS</option> -->
+						    <option value="Pending">Pending</option>
+						    <option value="Completed">Completed</option>
+						    <option value="Overdue">Overdue</option>
+						    <option value="Running">Running</option>
+						    <option value="Rejected">Rejected</option>
+						</select>
+			  		</div>
+			  		<div class="col-md-6">
+			  			<input type="text" class="form-control" ng-model="details.amount" placeholder="Amount" required="required"/>
+			  		</div>
+			  		<div class="col-md-6">
+			  			<strong>Phone:</strong> {{editable.user.phone}}
+			  		</div>
+			  		<div class="col-md-6">
+			  			<strong>Email:</strong> {{editable.user.email}}
+			  		</div>
+		 			<div style="float:right;padding-top:30px;">
+					    <!-- <button class="btn btn-info" type="button" ng-click="vm.setvalue()">Set Value</button> -->
+					    <button class="btn btn-primary" type="submit" >Update</button>
+					    <button class="btn btn-danger" type="button" ng-click="vm.cancel()">Cancel</button>
+					</div>
+		  		</form>
+		  	</div>	
+		  </div>
+		  <div class="modal-footer">
+		    
+		    <!-- <button class="btn btn-primary" type="button" ng-click="vm.update()">Update</button>
+		    <button class="btn btn-danger" type="button" ng-click="vm.cancel()">Cancel</button> -->
+		  </div>
+		</script>
+
+
+		<script type="text/ng-template" id="view.html">
+		  <div class="modal-header">
+		    <h3 class="modal-title" id="modal-title">VIEW <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></h3>
+		   
+		  </div>
+		  <div class="modal-body modbody" id="modal-body">
+		  		<div class="col-md-5">
+		  			<img src="../back/public/{{viewable.filePath}}" width="200px">
+		  		</div>
+		  		<div class="col-md-7">
+		  			<div class="col-md-12"><strong>USERNAME: </strong> {{viewable.user.username}} </div>
+		  			<div class="col-md-12"><strong>USERID: </strong>{{viewable.userid}}</div>
+		  			<div class="col-md-12"><strong>ITEMID: </strong>{{viewable.commodityid}}</div>
+		  			<div class="col-md-12"><strong>ITEM: </strong>{{viewable.type}} ( {{viewable.model}} )</div>
+		  			<div class="col-md-12"><strong>YEAR OF PURCHASE: </strong>{{viewable.year}}</div>
+		  			<div class="col-md-12"><strong>TENURE: </strong>{{viewable.tenure}}</div>
+		  			<div class="col-md-12"><strong>AMOUNT EXPECTED: </strong> {{viewable.amountexpected}} </div>
+		  			<div class="col-md-12"><strong>DESCRIPTION: </strong> {{viewable.description}} </div>
+		  			<div class="col-md-12"><strong>PHONE NO: </strong> {{viewable.user.phone}} </div>
+		  			<div class="col-md-12"><strong>EMAIL ID: </strong>{{viewable.user.email}}</div>
+		  		</div>
+		  	
+		  </div>
+		  <div class="modal-footer">
+		  
+		    <button class="btn btn-danger" type="button" ng-click="vm.cancel()">Cancel</button>
+		  </div>
+		</script>
+
+
+		<div class="dash">
+			<!-- <div class="">
+		
+				<button class="btn btn-info pull-right" ui-sref="requests">
+					<span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
+					&nbsp;Check Requests
+				</button>
+			</div> -->
+			<div class="col-md-12 dash_head">
+				<div class="col-md-4" style="padding-left:0px!important;">
+					<h3><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;Transaction Details:</h3>
+				</div>
+				<!-- <div class="col-md-4">
+					<select class="form-control" style="width:70%;">
+					  	
+					    <option class="active">All</option>
+					    <option>Completed</option>
+					    <option>Overdue</option>
+					    <option>Pending</option>
+					    <option>Running</option>
+					    <option>Rejected</option>
+					</select>
+				</div> -->
+
+			</div>
+			<table class="table table-bordered" style="text-align:center">
+			    <thead class="thead-inverse" style="color:white;background:#101010;">
+			      <tr>
+			        <th style="text-align:center">
+			        	# User ID
+			        </th>
+			        <th style="text-align:center">
+			        	# Item ID
+			        </th>
+			        <th style="text-align:center">
+			        	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			        	User Name
+			        </th>
+			        <th style="text-align:center">
+			        	<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+			        	&nbsp;Type
+			        </th>
+			        <th style="text-align:center">
+			        	<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+			        	&nbsp;Model
+			        </th>
+			        <th style="text-align:center">
+			        	<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+			        	&nbsp;From - To Date
+			        </th>
+			        <th style="text-align:center">
+			        	<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+			        	&nbsp;Status
+			        </th>
+			        <th style="text-align:center">
+			        	<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+			        	&nbsp;Time left
+			        </th>
+			        <th style="text-align:center">
+			        	&#x20B9;
+			        	&nbsp;Amount
+			        </th>
+			        <th style="text-align:center">
+			        	<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>
+			        	&nbsp;Modify
+			        </th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="x in mydata.first">
+			        <th scope="row" style="text-align:center">{{x.user.uid}}</th>
+			        <td> {{x.commodityid}} </td>
+			        <td>{{x.user.username}}</td>
+			        <td>{{x.type}}</td>
+			        <td>{{x.model}}</td>
+			        <td>{{x.data.from | date}} to {{ x.data.to | date}}</td>
+			        <td ng-class="statuscolor(x.data.status)">{{x.data.status}}</td>
+			        <td>
+			        	<strong>{{ differenceInDays(x.data.to,x.data.status) }}</strong>
+			        </td>
+			        <td> Rs.{{x.data.amount}} </td>
+			        <td>
+			        	<button class="btn btn-primary btn-sm" ng-click="vm.open(x)">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
+			        		Edit
+			        	</button>
+			        	<button class="btn btn-info btn-sm" ng-click="vm.view(x)">
+			        		<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+			        		view
+			        	</button>
+			        </td>
+			      </tr>
+			
+			    </tbody>
+		  </table>
+		<div>
+			<ul class="pagination pagi col-md-12">
+				<li ng-click="prev()">
+					<a><< Previous</a>
+				</li>
+				<li ng-click="next()" class="pull-right">
+					<a>Next >></a>
+				</li>
+			</ul>
+		</div>
+	
+		  	<div class="list-group col-md-12">
+			 	<div class="">
+			 		<li class="list-group-item list-group-item-action list-group-item-info">Total Transactions: {{numbdata[0]}}</li>
+					<li class="list-group-item list-group-item-action list-group-item-success">Completed Transactions: {{numbdata[1]}}</li>
+					<li class="list-group-item list-group-item-action list-group-item-prinary">Running Transactions: {{numbdata[2]}}</li>
+					<li class="list-group-item list-group-item-action list-group-item-warning">Pending Transactions: {{numbdata[3]}}</li>
+					<li class="list-group-item list-group-item-action list-group-item-danger">Overdue Transactions: {{numbdata[5]}}</li>
+					<li class="list-group-item list-group-item-action list-group-item-warning">Rejected Transactions: {{numbdata[4]}}</li>
+			 	</div>
+			 	<!-- <div class="col-md-6">
+			 		<li class="list-group-item list-group-item-action list-group-item-info">Total Amount Transacted: 22</li>
+					<li class="list-group-item list-group-item-action list-group-item-success">Completed Transactions: 19</li>
+					<li class="list-group-item list-group-item-action list-group-item-info">pending Transactions: Rs. 20,000</li>
+					<li class="list-group-item list-group-item-action list-group-item-danger">Overdue Amount: Rs. 4,000</li>
+			 	</div> -->
+			</div>
+		 
+		
+		</div>
+	</div>
+</div>

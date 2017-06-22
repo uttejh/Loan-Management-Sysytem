@@ -1,0 +1,193 @@
+<div class="log_reg">
+	<div class="padd_log_reg" >
+		<div class="col-md-6">
+			<div class="col-md-offset-1">
+				<div class="well well-lg">
+					<legend>Login</legend>
+					<!-- <div class="form-inline fb_g">
+						<div class="btn_fb_g">
+							<button class="btn btn-primary form-inline">
+								<div class="logo_fb_g">
+									<span><i class="fa fa-facebook" aria-hidden="true"></i></span>
+								</div>
+								<div class="desc_fb_g">
+									<span>&nbsp;&nbsp;&nbsp;
+										Facebook
+									</span>
+								</div>
+							</button>
+						</div>
+						<div class="btn_fb_g">
+							<button class="btn btn-danger form-inline">
+								<div class="logo_fb_g">
+									<span><i class="fa fa-google-plus" aria-hidden="true"></i></span>
+								</div>
+								<div class="desc_fb_g">
+									<span>&nbsp;&nbsp;&nbsp;
+										Google
+									</span>
+								</div>
+							</button>
+						</div>
+					</div>
+					<div class="or-div">
+						<hr class="or-hr">
+						<div class="or">or</div>
+					</div> -->	
+					<p class="bg-danger" style="padding:3px;text-align:center" ng-show="showerror">{{error_msg}}</p>
+					<form ng-submit="login()">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+		       			<div class="control-group log_form input-group">
+		       				<span class="input-group-addon">
+				       			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				       		</span>
+		       				<input type="text" name="" class="form-control" placeholder="Username" ng-model="user.username">
+		       			</div>
+		       			<div class="control-group log_form input-group">
+		       				<span class="input-group-addon">
+				       			<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+				       		</span>
+		       				<input type="password" name="" class="form-control" placeholder="Password" ng-model="user.logpassword">
+		       			</div>
+		       			<div class="control-group log_form" >
+		       				<div style="">
+		       					<input type="checkbox" ng-model="user.rememberme" name="remember">
+		       				    &nbsp;&nbsp;Remember Me
+		       				</div>
+		       			</div>
+		       			<div class="log_in form-inline">
+		       				<input type="Submit" class="btn btn-info" value="Log in">
+		       				<!-- <button class="btn btn-info" >
+		       					Log in
+		       				</button> -->
+		       				<a class="forgot" ng-click="forgotpwd=!forgotpwd" >Forgot Password?</a>
+		       			</div>
+		       		</form>
+		       		
+		       		<div class="well well_rec" ng-show="forgotpwd">
+		       			<form action="" class="form-inline form_rec">
+		       				<input type="text" class="form-control inp_rec" placeholder="Enter username" ng-model="forgot.username">
+		       				<input type="text" class="form-control inp_rec" placeholder="Enter email address" ng-model="forgot.email">
+		       				<div class="btn_recovery">
+		       					<button class="btn btn-primary btn_rec" ng-click="sendmail()">
+		       						Send Email
+		       					</button>
+		       				</div>
+		       			</form>
+		       		</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-5" >
+			<div class="well well-lg">
+				<legend>Register</legend>
+				<!-- <div class="form-inline fb_g">
+					<div class="btn_fb_g">
+						<button class="btn btn-primary form-inline">
+							<div class="logo_fb_g">
+								<span><i class="fa fa-facebook" aria-hidden="true"></i></span>
+							</div>
+							<div class="desc_fb_g">
+								<span>&nbsp;&nbsp;&nbsp;
+									Facebook
+								</span>
+							</div>
+						</button>
+					</div>
+					<div class="btn_fb_g">
+						<button class="btn btn-danger form-inline">
+							<div class="logo_fb_g">
+								<span><i class="fa fa-google-plus" aria-hidden="true"></i></span>
+							</div>
+							<div class="desc_fb_g">
+								<span>&nbsp;&nbsp;&nbsp;
+									Google
+								</span>
+							</div>
+						</button>
+					</div>
+				</div>
+				<div class="or-div">
+					<hr class="or-hr">
+					<div class="or">or</div>
+				</div> -->
+				<!-- <p class="bg-danger" style="padding:3px;text-align:center" ng-show="showerror2">{{errormsg}}</p> -->
+				<div class="bg bg-danger">
+					<ul>
+						<li ng-repeat="x in errors" style="list-style-type: decimal;">
+							{{x}}
+						</li>
+					</ul>
+				</div>
+				<form method="POST" name="myForm" role="form">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+		       		<div class="control-group log_form input-group padding_danger">
+		       			<span class="input-group-addon">
+			       			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			       		</span>
+		       			<input type="text" ng-minlength="6" name="username" class="form-control" placeholder="Username" ng-model="register.username" required>
+		       			
+		       		</div>
+		       		<span class="text-danger bg-danger" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+		       			<span class="text-danger bg-danger" ng-show="myForm.username.$dirty && myForm.username.$error.minlength">Minimum 6 character long</span>
+						<span class="text-danger bg-danger" ng-show="myForm.username.$error.required" class="danger">Username is required.</span>
+					</span>
+
+		       		<div class="control-group log_form input-group padding_danger">
+			       		<span class="input-group-addon">
+			       			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+			       		</span>
+		       			<input type="email" name="email" class="form-control" placeholder="Email address" ng-model="register.email">
+		       			
+		       		</div>
+		       		<span class="text-danger bg-danger" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+						<span class="text-danger bg-danger" ng-show="myForm.email.$error.required">Email is required.</span>
+						<span class="text-danger bg-danger" ng-show="myForm.email.$error.email">Invalid email address.</span>
+					</span>
+
+					<div class="control-group log_form input-group padding_danger">
+		       			<span class="input-group-addon">
+			       			<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+			       		</span>
+		       			<input type="number" ng-minlength="10" ng-maxlength="10" name="phone" class="form-control" placeholder="Phone No." ng-model="register.phone" required>
+		       			
+		       		</div>
+		       		<span class="text-danger bg-danger" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+		       			<span class="text-danger bg-danger" ng-show="myForm.phone.$dirty && myForm.phone.$error.minlength">Minimum 10 character long</span>
+						<span class="error" ng-show="myForm.number.$error.number">
+      					Not valid number!</span>
+						<span class="text-danger bg-danger" ng-show="myForm.phone.$dirty && myForm.phone.$error.maxlength">Maximum 10 character long</span>
+					</span>
+
+	      			<div class="control-group log_form input-group padding_danger">
+	      				<span class="input-group-addon">
+			       			<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+			       		</span>
+	      				<input type="password" name="password" ng-minlength="6" class="form-control" placeholder="Password" ng-model="register.password"  required> 
+	      				
+		 			</div>
+					<span class="text-danger bg-danger" ng-show="myForm.password.$dirty && myForm.password.$error.required">Please set a Password!</span>
+	      			<span class="text-danger bg-danger" ng-show="myForm.password.$dirty && myForm.password.$error.minlength">Minimum 6 character long</span>
+
+		 			<div class="control-group log_form input-group padding_danger">
+		 				<span class="input-group-addon">
+			       			<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+			       		</span>
+	      				<input type="password" name="passwordConfirmation" ng-model="register.passwordConfirmation" password-confirm match-target="register.password" class="form-control" placeholder="Confirm Password"  required > 
+	      				
+		 			</div>
+					<span class="text-danger bg-danger" ng-show="myForm.passwordConfirmation.$error.match && myForm.passwordConfirmation.$dirty">Passwords do not match.</span>
+
+		       		<div class="log_in form-inline">
+		       			<button class="btn btn-info" ng-disabled="myForm.$invalid" ng-click="registers()">
+		       			 
+		       				Sign up!
+		   				</button>
+	     			</div>
+	       		</form>
+			</div>
+		</div>
+	</div>
+
+</div>

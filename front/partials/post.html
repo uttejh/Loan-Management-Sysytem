@@ -1,0 +1,82 @@
+<div class="post" >
+	<div class="container" style="padding-top:10px">
+		<div>
+			<legend>
+				<h3>
+					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+					Product Details:
+				</h3>
+			</legend>
+		</div>
+		<form enctype="multipart/form-data" ng-submit="post(item)">
+			<div class="alert alert-info col-md-12">
+				<center>All the fields are necessary.</center>
+			</div>
+			<div class="col-md-4">
+				<input type="file" file-model="item.filedat" ng-model-instant onchange="angular.element(this).scope().imageUpload(this)" required accept="image/*">
+				<!-- <button type="submit" style="margin-top:5px;" ng-click="post(item)" >Upload</button> -->
+
+				
+				<div ng-repeat="step in stepsModel" style="padding-top:10px;">
+			        <img class="thumb"  ng-src="{{step}}" width="200px" />
+			    </div>
+			</div>
+			
+				<div class="row col-md-8" style="padding-top:10px">
+					<div class="form-group">
+						
+						<div class="col-md-12">
+							<div class="col-md-4" style="padding-bottom:10px">
+								<select class="form-control" required ng-model="item.type">
+								  	<option value="" >Choose Product Type</option>
+								    <option value="phone">Cell phone</option>
+								    <option value="Laptop">Laptop</option>
+								    <option value="Vehicle">Motor Vehicle</option>
+								    <option value="other">Other Electronic Gadget</option>
+								</select>
+							</div>
+						
+							<div class="col-md-4" style="padding-bottom:10px">
+								<input type="text" class="form-control" placeholder="Product Model" ng-model="item.model" required>
+							</div>
+							<div class="col-md-4">
+								<input type="text" ng-show="item.type=='other'" class="form-control" placeholder="Specify Product Type" ng-model="item.other">
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-4" style="padding-bottom:10px">
+								<input type="text" class="form-control" placeholder="Year of purchase" ng-model="item.year" required>
+							</div>
+							<div class="col-md-4" style="padding-bottom:10px">
+								<input type="text" class="form-control" placeholder="Expected Loan" ng-model="item.exp" required>
+							</div>
+							<div class="col-md-4" style="padding-bottom:10px">
+								<input type="text" class="form-control" placeholder="Tenure of Loan" ng-model="item.tenure" required>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-12" style="padding-bottom:10px">
+								<textarea class="form-control" rows="4" placeholder="Small Description about the product" ng-model="item.desc" required></textarea>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-12">
+								<button class="btn btn-primary" type="submit">
+									<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+									Post
+								</button>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <input type="submit"  value="post"/> -->
+			</form>
+			<div class="row " >
+				
+			</div>
+			<div class="row" style="padding-top:10px">
+				
+			</div>
+	</div>
+</div>

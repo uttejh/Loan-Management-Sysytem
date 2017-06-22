@@ -1,0 +1,77 @@
+<div class="request" >    <!-- ng-controller="RequestsController" -->
+	<div class="container">
+		<div class="col-md-12" style="padding-bottom:10px;">
+			<h3 class="col-md-4"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;Requests:</h3>
+			<div class="col-md-4">
+				<select class="form-control" style="width:70%;">
+				  	<!-- <option selected disabled>SHOW</option> -->
+				  	<option>All</option>
+				    <option>Representative request</option>
+					<option>Bank A/C Request</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<button class="btn btn-info pull-right" ui-sref="dashboard">
+					<span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+					Dashboard
+				</button>
+			</div>
+		</div>
+		<table class="table table-bordered" style="text-align:center">
+		    <thead class="thead-inverse" style="color:white;background:#101010;">
+		      <tr>
+		        <th style="text-align:center">
+			       	# User ID
+			    </th>
+			    <th style="text-align:center">
+		        	# Commodity ID
+		        </th>
+			    <th style="text-align:center">
+		        	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			      	&nbsp;User Name
+			    </th>
+			    <th style="text-align:center">
+		        	<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+		        	&nbsp;Commodity
+		        </th>
+		        <th style="text-align:center">
+		        	<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+		        	&nbsp;Requested on
+		        </th>
+		        <th style="text-align:center">
+		        	<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+		        	&nbsp;Time
+		        </th>
+		         <th style="text-align:center">
+		        	<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
+		        	&nbsp;Requested  for
+		        </th>
+		        <th style="text-align:center">
+		        	&#x20B9;
+		        	&nbsp;Amount
+		        </th>
+		         <th style="text-align:center">
+		        	<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+		        	&nbsp;Status
+		        </th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <th scope="row" style="text-align:center">234</th>
+		        <td>3233</td>
+		        <td>Shadow Freak</td>
+		        <td>Mobile</td>
+		        <td> 23/4/16 </td>
+		        <td>
+		        	23:00
+		        </td>
+		        <td>Bank A/C</td>
+		        <td>12,000</td>
+		        <td>pending</td>
+		      </tr>
+		     
+		    </tbody>
+	  	</table>
+	</div>
+</div>
